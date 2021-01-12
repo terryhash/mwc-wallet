@@ -24,6 +24,7 @@ use crate::grin_util::Mutex;
 use crate::api_impl::owner_updater::StatusMessage;
 use crate::grin_keychain::{Identifier, Keychain};
 use crate::grin_util::secp::key::PublicKey;
+use crate::types::OutputData;
 
 use crate::internal::{keys, scan, selection, tx, updater};
 use crate::slate::{PaymentInfo, Slate};
@@ -873,6 +874,7 @@ where
 			use_test_rng,
 		)?;
 	}
+	println!("I am here before the complete tx");
 
 	tx::complete_tx(&mut *w, keychain_mask, &mut sl, 0, &context)?;
 	tx::verify_slate_payment_proof(&mut *w, keychain_mask, &context, &sl)?;
@@ -1434,4 +1436,29 @@ where
 	let recipient_mine = my_address_pubkey == recipient_pubkey;
 
 	Ok((sender_mine, recipient_mine))
+}
+
+pub fn self_spend_particular_putput<'a, L, C, K>(
+	wallet_inst: Arc<Mutex<Box<dyn WalletInst<'a, L, C, K>>>>,
+	keychain_mask: Option<&SecretKey>,
+	output: OutputData,
+	address: Option<String>,
+	_current_height: u64,
+	_minimum_confirmations: u64,
+	_seperate_tx: bool,
+) -> Result<(), Error>
+where
+	L: WalletLCProvider<'a, C, K>,
+	C: NodeClient + 'a,
+	K: Keychain + 'a,
+{
+	scan::self_spend_particular_putput(
+		wallet_inst,
+		keychain_mask,
+		output,
+		address,
+		_current_height,
+		_minimum_confirmations,
+	)?;
+	Ok(())
 }
