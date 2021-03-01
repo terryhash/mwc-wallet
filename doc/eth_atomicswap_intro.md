@@ -191,4 +191,4 @@ Bob combines the partial signatures and submits the final transaction to the net
 
 The difference from mwc-bitcoin atomicswap is that the seller must redeem the ETH as soon as possible through his **ETH wallet** manually([MyCrypto](https://mycrypto.com/)) when the buyer redeemed the MWC. 
 
-Ethereum uses an accounting system where values are debited from accounts and credited to another, it is different from Bitcoin's UTXO system. That means it's impossible to redeem ETH without account secret key. Managing eth account is beyond scope of this article, which will be discussed here.
+Ethereum uses an accounting system where values are debited from accounts and credited to another, it is different from Bitcoin's UTXO system. That means it's impossible to redeem ETH without account secret key. Managing eth account is beyond scope of this article, which will not be discussed here.
