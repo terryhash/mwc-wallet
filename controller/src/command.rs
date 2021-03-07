@@ -1735,6 +1735,19 @@ pub struct SwapArgs {
 	pub wait_for_backup1: bool,
 }
 
+/// Eth operation
+#[derive(PartialEq)]
+pub enum EthSubcommand {
+	List,
+	New,
+	Import,
+}
+/// Arguments for the eth command
+pub struct EthArgs {
+	/// eth subcommand
+	pub subcommand: EthSubcommand,
+}
+
 // For Json we can't use int 64, we have to convert all of them to Strings
 #[derive(Serialize, Deserialize)]
 pub struct StateEtaInfoString {
@@ -2722,6 +2735,42 @@ where
 				"Swap trade {} is restored from the file {}",
 				swap_id, trade_file_name
 			);
+			Ok(())
+		}
+	}
+}
+
+
+pub fn eth<L, C, K>(
+	wallet_inst: Arc<Mutex<Box<dyn WalletInst<'static, L, C, K>>>>,
+	keychain_mask: Option<&SecretKey>,
+	api_listen_addr: String,
+	mqs_config: Option<MQSConfig>,
+	tor_config: Option<TorConfig>,
+	tls_conf: Option<TLSConfig>,
+	args: EthArgs,
+	cli_mode: bool,
+) -> Result<(), Error>
+where
+	L: WalletLCProvider<'static, C, K> + 'static,
+	C: NodeClient + 'static,
+	K: keychain::Keychain + 'static,
+{
+	let km = match keychain_mask.as_ref() {
+		None => None,
+		Some(&m) => Some(m.to_owned()),
+	};
+	match args.subcommand {
+		EthSubcommand::List => {
+			info!("eth::list");
+			Ok(())
+		}
+		EthSubcommand::New => {
+			info!("eth::new");
+			Ok(())
+		}
+		EthSubcommand::Import => {
+			info!("eth::import");
 			Ok(())
 		}
 	}

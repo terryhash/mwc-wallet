@@ -1145,6 +1145,25 @@ pub fn parse_swap_args(args: &ArgMatches) -> Result<command::SwapArgs, ParseErro
 	})
 }
 
+pub fn parse_eth_args(args: &ArgMatches) -> Result<command::EthArgs, ParseError> {
+	let subcommand = if args.is_present("list") {
+		command::EthSubcommand::List
+	} else if args.is_present("new") {
+		command::EthSubcommand::New
+	} else if args.is_present("import") {
+		command::EthSubcommand::Import
+	} else {
+		return Err(ParseError::ArgumentError(format!(
+			"Please define some action to do"
+		)));
+	};
+
+	Ok(command::EthArgs {
+		subcommand,
+	})
+}
+
+
 pub fn wallet_command<C, F>(
 	wallet_args: &ArgMatches,
 	mut wallet_config: WalletConfig,
@@ -1526,6 +1545,19 @@ where
 		("swap", Some(args)) => {
 			let a = arg_parse!(parse_swap_args(&args));
 			command::swap(
+				owner_api.wallet_inst.clone(),
+				km,
+				wallet_config.api_listen_addr(),
+				Some(mqs_config.clone()),
+				Some(tor_config.clone()),
+				global_wallet_args.tls_conf.clone(),
+				a,
+				cli_mode,
+			)
+		}
+		("eth", Some(args)) => {
+			let a = arg_parse!(parse_eth_args(&args));
+			command::eth(
 				owner_api.wallet_inst.clone(),
 				km,
 				wallet_config.api_listen_addr(),

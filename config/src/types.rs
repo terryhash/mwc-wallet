@@ -66,6 +66,8 @@ pub struct WalletConfig {
 	/// Key: <coin>_[main|test]_[1|2]
 	/// Value: url
 	pub swap_electrumx_addr: Option<BTreeMap<String, String>>,
+	/// Ethereum Swap Contract Address
+	pub eth_swap_addr: Option<String>,
 }
 
 impl Default for WalletConfig {
@@ -119,6 +121,7 @@ impl Default for WalletConfig {
 				.map(|i| (i.0.to_string(), i.1.to_string()))
 				.collect::<BTreeMap<String, String>>(),
 			),
+			eth_swap_addr: Some("0xA21b2c034dF046a3DB790dd20b0C5C0040a74c67".to_string()),
 		}
 	}
 }

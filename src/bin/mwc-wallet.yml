@@ -762,5 +762,21 @@ subcommands:
             help: secondary private ElectrumX node URI. If never setup, community node will be used
             long: electrum_uri2
             takes_value: true
-
-
+  - eth:
+      about: basic eth account management for eth swap
+      args:
+        - list:
+            help: list all eth accounts
+            short: l
+            long: list
+            takes_value: false
+        - new:
+            help: generate new eth accout
+            short: n
+            long: new
+            takes_value: false
+        - import:
+            help: import an exist eth account
+            short: i
+            long: import
+            takes_value: false

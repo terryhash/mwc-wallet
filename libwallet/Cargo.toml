@@ -54,6 +54,10 @@ bs58 = "0.3"
 curve25519-dalek = "2.1"
 crypto_box = "0.5"
 crc = "1.8"
+#ethereum
+web3 = "0.15.0"
+wagyu-ethereum = {path = "../../wagyu/ethereum/"}
+wagyu-model = "0.6.3"
 
 grin_wallet_util = { path = "../util", version = "4.1.0" }
 grin_wallet_config = { path = "../config", version = "4.1.0" }
