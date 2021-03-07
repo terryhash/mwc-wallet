@@ -27,10 +27,10 @@ fn eth_new_account(network: String) -> Result<String, MnemonicError> {
 	type N = Mainnet;
 	type W = English;
 	let mnemonic = EthereumMnemonic::<N, W>::new_with_count(&mut thread_rng(), 12).unwrap();
-    // info!("eth_new_account: {}", mnemonic);
+	// info!("eth_new_account: {}", mnemonic);
 
-    // let mnemonic = ethereum::mnemonic::EthereumMnemonic::<N, ethereum::wordlist::English>::new_with_count(rng, 12).unwrap();
-    // test_from_phrase::<N, W>(&mnemonic.entropy, &mnemonic.to_phrase().unwrap());
+	// let mnemonic = ethereum::mnemonic::EthereumMnemonic::<N, ethereum::wordlist::English>::new_with_count(rng, 12).unwrap();
+	// test_from_phrase::<N, W>(&mnemonic.entropy, &mnemonic.to_phrase().unwrap());
 	Ok("phrase".to_string())
 }
 
@@ -52,7 +52,7 @@ fn eth_new_account(network: String) -> Result<String, MnemonicError> {
 // 	C: NodeClient + 'a,
 // 	K: Keychain + 'a,
 // {
-	// Need to lock first to check if the wallet is open
+// Need to lock first to check if the wallet is open
 // 	wallet_lock!(wallet_inst, w);
 
 // 	let swap_id = trades::list_swap_trades()?;
@@ -128,4 +128,3 @@ fn eth_new_account(network: String) -> Result<String, MnemonicError> {
 
 // 	Ok(result)
 // }
-

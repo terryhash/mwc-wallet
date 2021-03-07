@@ -2740,7 +2740,6 @@ where
 	}
 }
 
-
 pub fn eth<L, C, K>(
 	wallet_inst: Arc<Mutex<Box<dyn WalletInst<'static, L, C, K>>>>,
 	keychain_mask: Option<&SecretKey>,

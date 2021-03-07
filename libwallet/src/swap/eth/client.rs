@@ -30,14 +30,14 @@ pub trait EthNodeClient: Sync + Send + 'static {
 	fn height(&mut self) -> Result<u64, ErrorKind>;
 	/// Get swap details,
 	fn get_swap_details(&mut self, address :Address) -> Result<(), ErrorKind>;
-	/// Get BTC transaction info.
-	/// Return (height)
-	/// Note: we can't return transaction because it is not Only BTC now, so we don't have parser
-	/// to handle all possible coins. ZCash Tx is not parcable by BTC
-	// fn transaction(
-	// 	&mut self,
-	// 	tx_hash: &Txid, // tx hash
-	// ) -> Result<Option<u64>, ErrorKind>;
+	///// Get BTC transaction info.
+	///// Return (height)
+	///// Note: we can't return transaction because it is not Only BTC now, so we don't have parser
+	///// to handle all possible coins. ZCash Tx is not parcable by BTC
+	//// fn transaction(
+	//// 	&mut self,
+	//// 	tx_hash: &Txid, // tx hash
+	//// ) -> Result<Option<u64>, ErrorKind>;
 }
 
 /// Mock BTC node for the testing

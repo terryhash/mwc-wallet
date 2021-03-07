@@ -1158,11 +1158,8 @@ pub fn parse_eth_args(args: &ArgMatches) -> Result<command::EthArgs, ParseError>
 		)));
 	};
 
-	Ok(command::EthArgs {
-		subcommand,
-	})
+	Ok(command::EthArgs { subcommand })
 }
-
 
 pub fn wallet_command<C, F>(
 	wallet_args: &ArgMatches,
